@@ -3,555 +3,390 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Римські завоювання: Шлях до панування</title>
+    <title>Римські завоювання - 6 клас НУШ</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        roman: {
-                            red: '#8b0000',
-                            gold: '#d4af37',
-                            marble: '#f8f9fa',
-                            dark: '#2c3e50'
-                        }
-                    }
-                }
-            }
-        }
-    </script>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap');
+        
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f4f5;
+            font-family: 'Montserrat', sans-serif;
+            background-color: #fdfbf7;
+            color: #333;
         }
-        .tab-content {
-            display: none;
-            animation: fadeIn 0.4s ease-in-out;
+        h1, h2, h3, .roman-title {
+            font-family: 'Playfair Display', serif;
         }
-        .tab-content.active {
-            display: block;
+        .roman-red {
+            background-color: #8B0000;
         }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        .roman-red-text {
+            color: #8B0000;
         }
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.2);
+        .roman-gold {
+            background-color: #DAA520;
+        }
+        .roman-gold-text {
+            color: #B8860B;
+        }
+        .tab-btn.active {
+            border-bottom: 4px solid #DAA520;
+            color: #8B0000;
+            font-weight: bold;
         }
     </style>
 </head>
-<body class="text-slate-800 min-h-screen flex flex-col">
+<body class="min-h-screen flex flex-col">
 
     <!-- Header -->
-    <header class="bg-roman-red text-white shadow-lg relative overflow-hidden">
-        <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')]"></div>
-        <div class="container mx-auto px-4 py-8 relative z-10">
-            <h1 class="text-3xl md:text-5xl font-bold text-center mb-2 uppercase tracking-wider">
-                <i class="fa-solid fa-building-columns mr-3 text-roman-gold"></i>Римські завоювання
-            </h1>
-            <p class="text-center text-roman-gold text-lg md:text-xl font-light">Шлях до панування у Середземномор’ї</p>
+    <header class="roman-red text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-3xl md:text-4xl font-bold mb-2">🏛️ Римські завоювання</h1>
+            <p class="text-lg text-yellow-100">Шлях до панування у Середземномор’ї (6 клас НУШ)</p>
         </div>
     </header>
 
-    <!-- Navigation -->
-    <nav class="bg-roman-dark sticky top-0 z-50 shadow-md">
-        <div class="container mx-auto px-4">
-            <ul class="flex flex-wrap justify-center sm:justify-start gap-1">
-                <li>
-                    <button onclick="openTab('main')" class="tab-btn px-6 py-4 text-white hover:bg-roman-red hover:text-white transition-colors border-b-4 border-transparent focus:outline-none flex items-center gap-2 active-tab" data-target="main">
-                        <i class="fa-solid fa-bullseye"></i> Головна
-                    </button>
-                </li>
-                <li>
-                    <button onclick="openTab('material')" class="tab-btn px-6 py-4 text-gray-300 hover:bg-roman-red hover:text-white transition-colors border-b-4 border-transparent focus:outline-none flex items-center gap-2" data-target="material">
-                        <i class="fa-solid fa-book-open"></i> Матеріал
-                    </button>
-                </li>
-                <li>
-                    <button onclick="openTab('documents')" class="tab-btn px-6 py-4 text-gray-300 hover:bg-roman-red hover:text-white transition-colors border-b-4 border-transparent focus:outline-none flex items-center gap-2" data-target="documents">
-                        <i class="fa-solid fa-scroll"></i> Документи
-                    </button>
-                </li>
-                <li>
-                    <button onclick="openTab('quiz')" class="tab-btn px-6 py-4 text-gray-300 hover:bg-roman-red hover:text-white transition-colors border-b-4 border-transparent focus:outline-none flex items-center gap-2" data-target="quiz">
-                        <i class="fa-solid fa-clipboard-question"></i> Вікторина
-                    </button>
-                </li>
-            </ul>
+    <!-- Navigation Tabs -->
+    <nav class="bg-white shadow-md sticky top-0 z-10">
+        <div class="container mx-auto px-4 flex justify-center space-x-2 md:space-x-8 overflow-x-auto">
+            <button onclick="openTab('home')" id="btn-home" class="tab-btn active py-4 px-2 md:px-4 hover:text-red-800 transition-colors whitespace-nowrap text-sm md:text-base">Головна</button>
+            <button onclick="openTab('material')" id="btn-material" class="tab-btn py-4 px-2 md:px-4 hover:text-red-800 transition-colors whitespace-nowrap text-sm md:text-base">Матеріал</button>
+            <button onclick="openTab('documents')" id="btn-documents" class="tab-btn py-4 px-2 md:px-4 hover:text-red-800 transition-colors whitespace-nowrap text-sm md:text-base">Документи</button>
+            <button onclick="openTab('quiz')" id="btn-quiz" class="tab-btn py-4 px-2 md:px-4 hover:text-red-800 transition-colors whitespace-nowrap text-sm md:text-base">Вікторина</button>
         </div>
     </nav>
 
     <!-- Main Content Area -->
-    <main class="flex-grow container mx-auto px-4 py-8 max-w-5xl">
+    <main class="flex-grow container mx-auto px-4 py-8 max-w-4xl">
 
-        <!-- Вкладка 1: Головна -->
-        <section id="main" class="tab-content active">
-            <div class="glass-panel rounded-2xl shadow-xl p-8 mb-8 border-t-4 border-roman-red">
-                <h2 class="text-3xl font-bold text-roman-red mb-6 border-b pb-2">Мета та завдання уроку</h2>
+        <!-- TAB: ГОЛОВНА -->
+        <section id="home" class="tab-content animate-fade-in">
+            <div class="bg-white rounded-xl shadow-md p-6 md:p-8 border-t-4 border-red-800">
+                <h2 class="text-2xl roman-red-text font-bold mb-4">Вітаю на уроці історії! 👋</h2>
+                <p class="mb-4 text-lg leading-relaxed">Сьогодні ми здійснимо подорож у часі та дізнаємося, як невеличке місто Рим перетворилося на наймогутнішу державу Стародавнього світу.</p>
                 
-                <div class="grid md:grid-cols-2 gap-8">
-                    <div>
-                        <h3 class="text-xl font-semibold mb-4 flex items-center gap-2 text-roman-dark">
-                            <i class="fa-solid fa-compass text-roman-gold"></i> На цьому уроці ми:
-                        </h3>
-                        <ul class="space-y-3 text-lg text-gray-700">
-                            <li class="flex items-start gap-3">
-                                <i class="fa-solid fa-check text-green-600 mt-1"></i>
-                                <span>Розкриємо основні <b>етапи територіальної експансії</b> Давнього Риму.</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <i class="fa-solid fa-check text-green-600 mt-1"></i>
-                                <span>Проаналізуємо причини, хід та наслідки <b>Пунічних війн</b> (Рим проти Карфагена).</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <i class="fa-solid fa-check text-green-600 mt-1"></i>
-                                <span>З’ясуємо особливості організації та реформування <b>римського війська</b>.</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <i class="fa-solid fa-check text-green-600 mt-1"></i>
-                                <span>Навчимося працювати з історичними документами та речовими пам'ятками.</span>
-                            </li>
-                        </ul>
+                <div class="bg-yellow-50 p-6 rounded-lg my-6 border-l-4 border-yellow-500">
+                    <h3 class="text-xl font-bold mb-3 roman-gold-text">🎯 Наша мета на сьогодні:</h3>
+                    <ul class="space-y-2 list-disc list-inside">
+                        <li><strong>Розкрити</strong> етапи територіального розширення Риму.</li>
+                        <li><strong>Ознайомитися</strong> з причинами та наслідками Пунічних війн.</li>
+                        <li><strong>З'ясувати</strong> особливості устрою римського війська та дізнатися секрет його непереможності.</li>
+                    </ul>
+                </div>
+
+                <h3 class="text-xl font-bold mb-3 mt-8 roman-red-text">🤔 Розминка: Поміркуймо разом!</h3>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
+                        <p class="font-semibold text-gray-700 mb-2">1. Для чого держава створює військо?</p>
+                        <p class="text-sm text-gray-600">Згадайте, які держави давнини прославилися своїми завоюваннями?</p>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
+                        <p class="font-semibold text-gray-700 mb-2">2. Що таке «Піррова перемога»?</p>
+                        <p class="text-sm text-gray-600">У 279 р. до н.е. цар Пірр переміг римлян, але втратив майже все військо. Він сказав: <em>«Ще одна така перемога, і я залишуся без війська»</em>.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB: МАТЕРІАЛ -->
+        <section id="material" class="tab-content hidden animate-fade-in">
+            <div class="space-y-8">
+                <!-- Section 1 -->
+                <div class="bg-white rounded-xl shadow-md p-6 border-l-4 border-red-800">
+                    <h2 class="text-2xl font-bold mb-4 roman-red-text">1. Етапи завоювань</h2>
+                    <p class="mb-4">Певний час після заснування Рим контролював лише найближчі околиці. Однак із часом його територіальні володіння почали стрімко розширюватися:</p>
+                    <ul class="list-disc list-inside space-y-2 mb-4 text-gray-700">
+                        <li><strong>500—260-ті рр. до н. е.</strong> — Рим завоював увесь Апеннінський півострів (Італію).</li>
+                        <li><strong>264—146 рр. до н. е.</strong> — Рим воював із Карфагеном (Північна Африка) за панування в Середземномор'ї.</li>
+                    </ul>
+                    <div class="bg-blue-50 p-4 rounded text-sm italic mb-4">
+                        <strong>Робота з картою:</strong> Знайдіть на історичній карті у підручниках Карфаген та простежте, як Середземне море поступово стало "внутрішнім озером" Римської держави.
                     </div>
                     
-                    <div class="bg-orange-50 p-6 rounded-xl border border-orange-100">
-                        <h3 class="text-xl font-semibold mb-4 text-roman-red">Актуалізація знань (Поміркуйте!)</h3>
-                        <div class="space-y-4">
-                            <div class="p-4 bg-white rounded shadow-sm border-l-4 border-roman-gold">
-                                <p class="italic text-gray-700">«Для чого держава створює військо?»</p>
+                    <div class="mt-6 text-center">
+                        <img src="https://geomap.com.ua/images/wh6a/Maps/17.jpg" alt="" class="mx-auto rounded-lg shadow-md border border-gray-200 w-full max-w-2xl">
+                        <p class="text-xs text-gray-500 mt-2">Зростання території Римської республіки</p>
+                    </div>
+                </div>
+
+                <!-- Section 2 -->
+                <div class="bg-white rounded-xl shadow-md p-6 border-l-4 border-yellow-600">
+                    <h2 class="text-2xl font-bold mb-4 roman-red-text">2. Пунічні війни (264—146 рр. до н. е.)</h2>
+                    
+                    <div class="mb-6 text-center">
+                        <img src="https://geomap.com.ua/images/wh6a/Maps/19.jpg" alt="" class="mx-auto rounded-lg shadow-md border border-gray-200 w-full max-w-2xl">
+                        <p class="text-xs text-gray-500 mt-2">Хід Пунічних війн та розширення території Риму</p>
+                    </div>
+
+                    <p class="mb-4 text-gray-700">Війни між Римом і Карфагеном увійшли в історію як <strong>Пунічні</strong> (римляни називали карфагенян пунами). Усього їх було три, і вони вирішували, хто стане володарем усього Середземномор'я.</p>
+                    
+                    <div class="space-y-6">
+                        <!-- First Punic War -->
+                        <div class="bg-gray-50 p-4 rounded-lg border-l-4 border-blue-500 shadow-sm">
+                            <h3 class="font-bold text-lg text-blue-800 mb-2">Перша пунічна війна (264—241 рр. до н. е.)</h3>
+                            <p class="text-sm text-gray-700 mb-1"><strong>Що відбулося:</strong> Боротьба за багатий острів Сицилія. Щоб перемогти на морі, римлянам довелося з нуля побудувати власний потужний військовий флот.</p>
+                            <p class="text-sm text-gray-700"><strong>Наслідки:</strong> Перемога Риму. Карфаген втратив Сицилію і мусив виплатити римлянам великі кошти.</p>
+                        </div>
+
+                        <!-- Second Punic War -->
+                        <div class="bg-red-50 p-4 rounded-lg border-l-4 border-red-500 shadow-sm">
+                            <h3 class="font-bold text-lg text-red-800 mb-2">Друга пунічна війна (218—201 рр. до н. е.)</h3>
+                            <p class="text-sm text-gray-700 mb-4"><strong>Що відбулося:</strong> Найвідоміша з війн. Карфагенський полководець Ганнібал здійснив неймовірний перехід зі слонами через засніжені Альпи і напав на Рим з півночі. Проте римський полководець Сципіон переніс війну в Африку і змусив Ганнібала повернутися назад.</p>
+                            <p class="text-sm text-gray-700 mb-4"><strong>Наслідки:</strong> Вирішальна перемога Риму. Карфаген втратив усі свої володіння за межами Африки, бойових слонів та військовий флот.</p>
+                            
+                            <div class="grid md:grid-cols-2 gap-4 mt-4 bg-white p-4 rounded border border-red-100">
+                                <div class="text-center">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b4/Hannibal_Barca_bust_from_Capua_photo.jpg" alt="Ганнібал" class="mx-auto h-40 object-cover rounded shadow-sm mb-2">
+                                    <h4 class="font-bold text-md text-red-900">Ганнібал Барка</h4>
+                                    <p class="text-xs text-gray-600">Видатний стратег Карфагена. Тримав у страху Рим майже 15 років.</p>
+                                </div>
+                                <div class="text-center">
+                                    <img src="https://poradu.pp.ua/uploads/posts/2016-05/publy-kornely-scipon-afrikanskiy-starshiy-korotka-bografya-foto_161.jpeg" alt="Сципіон Африканський" class="mx-auto h-40 object-cover rounded shadow-sm mb-2">
+                                    <h4 class="font-bold text-md text-red-900">Сципіон Африканський</h4>
+                                    <p class="text-xs text-gray-600">Римський полководець. Знайшов слабке місце Ганнібала і врятував Рим.</p>
+                                </div>
                             </div>
-                            <div class="p-4 bg-white rounded shadow-sm border-l-4 border-roman-gold">
-                                <p class="italic text-gray-700">«Які держави минулого стали відомими завдяки своїм завоюванням?»</p>
-                            </div>
+                        </div>
+
+                        <!-- Third Punic War -->
+                        <div class="bg-gray-50 p-4 rounded-lg border-l-4 border-gray-800 shadow-sm">
+                            <h3 class="font-bold text-lg text-gray-800 mb-2">Третя пунічна війна (149—146 рр. до н. е.)</h3>
+                            <p class="text-sm text-gray-700 mb-1"><strong>Що відбулося:</strong> Римляни боялися відродження сили ворога. Сенатор Катон кожну свою промову закінчував словами: <em>«Карфаген має бути зруйнований!»</em>. Після довгої облоги місто впало.</p>
+                            <p class="text-sm text-gray-700"><strong>Наслідки:</strong> Карфаген повністю зруйновано, а його землі стали римською провінцією під назвою «Африка».</p>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-                <div class="bg-white p-6 rounded-xl shadow-md">
-                    <div class="w-16 h-16 mx-auto bg-roman-red text-white rounded-full flex items-center justify-center text-2xl mb-4 shadow-lg">
-                        <i class="fa-solid fa-map-location-dot"></i>
+                <!-- Section 3 -->
+                <div class="bg-white rounded-xl shadow-md p-6 border-l-4 border-red-800">
+                    <h2 class="text-2xl font-bold mb-4 roman-red-text">3. Римське військо: проблеми та реформи</h2>
+                    <p class="mb-4 text-gray-700">Основою могутньої римської армії були <strong>легіони</strong> (від 4,5 до 6 тис. осіб). Проте часті та довгі війни створювали великі проблеми для держави.</p>
+                    
+                    <div class="mb-6">
+                        <h3 class="font-bold text-lg mb-2 text-red-800">Криза в армії та перші спроби її вирішення</h3>
+                        <ul class="list-disc list-inside space-y-2 text-sm text-gray-700">
+                            <li><strong>Проблема:</strong> Спочатку в армії мали право служити лише громадяни, які володіли землею. Але через багаторічні походи їхні господарства занепадали. Селяни розорювалися, втрачали землю, а отже, і право служити у війську. Армія почала зменшуватися.</li>
+                            <li><strong>Зміни Каміла:</strong> Щоб виправити ситуацію, ще на початку розширення Риму полководець Марк Фурій Каміл запровадив платню для воїнів. Тепер на війні можна було заробити, що дозволило залучити бідніших громадян і забезпечити їх харчами.</li>
+                            <li><strong>Реформи братів Гракхів:</strong> У ІІ ст. до н.е. Тиберій та Гай Гракхи зрозуміли: якщо не буде селян, армія зникне. Вони спробували повернути біднякам державні землі, щоб відродити клас землевласників-воїнів. Проте багатії, які захопили ці землі, чинили їм шалений і жорстокий опір.</li>
+                        </ul>
                     </div>
-                    <h4 class="font-bold text-lg">Завоювання</h4>
-                    <p class="text-sm text-gray-600 mt-2">Від Апеннінського півострова до всього Середземномор'я</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-md">
-                    <div class="w-16 h-16 mx-auto bg-roman-red text-white rounded-full flex items-center justify-center text-2xl mb-4 shadow-lg">
-                        <i class="fa-solid fa-ship"></i>
+
+                    <div>
+                        <h3 class="font-bold text-lg mb-3 text-red-800">Вирішальні реформи: створення професійної армії</h3>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div class="bg-gray-50 p-4 rounded-lg border border-gray-200 shadow-sm">
+                                <h4 class="font-bold mb-2 roman-red-text">Реформи Гая Марія</h4>
+                                <p class="text-sm text-gray-700">Наприкінці ІІ ст. до н. е. Гай Марій зробив армію <strong>професійною</strong>. До війська почали брати всіх охочих, навіть безземельних бідняків. Держава давала їм зброю та платила зарплату, а після служби (зазвичай 16 років) ветерани отримували ділянку землі. <br><br><em>Наслідок:</em> Армія стала надзвичайно сильною, але воїни тепер були віддані не державі, а своїм полководцям (як згодом і сталося з Марієм та його суперником Суллою).</p>
+                            </div>
+                            <div class="bg-gray-50 p-4 rounded-lg border border-gray-200 shadow-sm">
+                                <h4 class="font-bold mb-2 roman-red-text">Зміни Юлія Цезаря</h4>
+                                <p class="text-sm text-gray-700">У середині І ст. до н. е. полководець Гай Юлій Цезар вдосконалив структуру легіону. Він додав до нього не лише кінноту, а й інженерів із машинами та знаряддями для штурму міст. <br><br><em>Наслідок:</em> Завдяки цьому кожен окремий легіон став більш боєздатним і самостійним. Тепер для успішних бойових дій не завжди потрібно було збирати величезну кількість війська.</p>
+                            </div>
+                        </div>
                     </div>
-                    <h4 class="font-bold text-lg">Пунічні війни</h4>
-                    <p class="text-sm text-gray-600 mt-2">Епічне протистояння Риму та могутнього Карфагена</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-md">
-                    <div class="w-16 h-16 mx-auto bg-roman-red text-white rounded-full flex items-center justify-center text-2xl mb-4 shadow-lg">
-                        <i class="fa-solid fa-shield-halved"></i>
+
+                    <div class="mt-6 text-center">
+                        <img src="https://ru-static.z-dn.net/files/dc6/a01c25699fc826120b82a563e590aee3.png" alt="" class="mx-auto rounded-lg shadow-md border border-gray-200 w-full max-w-2xl bg-white p-2">
+                        <p class="text-xs text-gray-500 mt-2">Тріумф римського полководця</p>
                     </div>
-                    <h4 class="font-bold text-lg">Армія легіонерів</h4>
-                    <p class="text-sm text-gray-600 mt-2">Як ополчення перетворилося на непереможну професійну армію</p>
                 </div>
             </div>
         </section>
 
-        <!-- Вкладка 2: Матеріал -->
-        <section id="material" class="tab-content">
+        <!-- TAB: ДОКУМЕНТИ -->
+        <section id="documents" class="tab-content hidden animate-fade-in">
             <div class="space-y-8">
                 
-                <!-- Питання 1 -->
-                <article class="bg-white rounded-2xl shadow-lg overflow-hidden border-l-8 border-roman-red">
-                    <div class="p-6 md:p-8">
-                        <h2 class="text-2xl font-bold text-roman-dark mb-4">1. Етапи римських завоювань</h2>
-                        <p class="mb-4 text-gray-700">Певний час після заснування Рим контролював лише найближчі околиці. Однак із часом його територіальні володіння почали стрімко розширюватися.</p>
-                        
-                        <div class="mb-6 rounded-lg overflow-hidden shadow-sm border border-gray-200 bg-gray-50">
-                            <img src="https://geomap.com.ua/images/wh6a/Maps/17.jpg" alt="Карта римських завоювань" class="w-full h-auto object-contain max-h-[500px]" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'p-4 text-center text-gray-500\'><i class=\'fa-solid fa-map-location-dot text-3xl mb-2\'></i><br>Карта недоступна</div>';">
-                        </div>
-
-                        <div class="pl-4 border-l-2 border-roman-gold space-y-4 mb-6">
+                <!-- Document 1 -->
+                <div class="bg-white rounded-xl shadow-md p-6">
+                    <h2 class="text-2xl font-bold mb-4 roman-red-text">Речове джерело: Надгробок Тита Калідія Севера</h2>
+                    <div class="flex flex-col md:flex-row gap-6 items-start">
+                        <div class="md:w-1/2 grid grid-cols-2 gap-4">
                             <div>
-                                <span class="inline-block px-2 py-1 bg-gray-100 text-roman-dark font-bold rounded text-sm mb-1">500–260 рр. до н. е.</span>
-                                <p>Рим завоював увесь Апеннінський півострів.</p>
+                                <img src="https://imgpx.com/7bsj8jjgWwRt.png" alt="" class="w-full h-full object-cover rounded-lg shadow-lg">
+                                <p class="text-xs text-center text-gray-500 mt-2">Надгробок знайдено в Австрії (І ст. н.е.)</p>
                             </div>
                             <div>
-                                <span class="inline-block px-2 py-1 bg-gray-100 text-roman-dark font-bold rounded text-sm mb-1">264–146 рр. до н. е.</span>
-                                <p>Рим воював із Карфагеном за Західне Середземномор’я і здолав його.</p>
-                            </div>
-                            <div>
-                                <span class="inline-block px-2 py-1 bg-gray-100 text-roman-dark font-bold rounded text-sm mb-1">ІІ ст. до н. е.</span>
-                                <p>Римляни захопили Грецію, Македонію, Східне Середземномор’я, а також завершили завоювання Іспанії, Галлії та інших територій.</p>
+                                <img src="https://discover.in.ua/uploads/illustrations/mini/%D0%A0%D0%B8%D0%BC%D1%81%D1%8C%D0%BA%D1%96-%D0%BB%D0%B5%D0%B3%D1%96%D0%BE%D0%BD%D0%B5%D1%80%D0%B8.jpg" alt="" class="w-full h-full object-cover rounded-lg shadow-lg">
+                                <p class="text-xs text-center text-gray-500 mt-2">Римські легіонери</p>
                             </div>
                         </div>
-
-                        <div class="bg-blue-50 p-4 rounded-lg flex gap-4">
-                            <i class="fa-solid fa-circle-info text-blue-500 text-xl mt-1"></i>
-                            <div>
-                                <h4 class="font-bold text-blue-900">Словникова робота: «Піррова перемога»</h4>
-                                <p class="text-sm text-blue-800 mt-1">У 279 р. до н. е. відбулася битва під Аускулом. Греки на чолі з Пірром перемогли римлян, але їхні втрати були настільки великими, що цар сказав: <i>«Ще одна така перемога, і я залишуся без війська»</i>. Вислів означає перемогу, яка дісталася надто високою ціною і рівноцінна поразці.</p>
-                            </div>
+                        <div class="md:w-1/2">
+                            <p class="mb-3">Це унікальне «кам'яне резюме» описує військову кар’єру Тита в римській армії:</p>
+                            <ul class="list-disc list-inside space-y-2 text-sm text-gray-700 mb-4">
+                                <li>Починав службу як звичайний <strong>вершник</strong> у допоміжних військах.</li>
+                                <li>Став <strong>опціоном</strong> (помічником командира), а згодом <strong>декуріоном</strong> (командиром кавалерії).</li>
+                                <li>Дослужився до офіцера — <strong>центуріона</strong> в престижному XV Аполлоновому легіоні.</li>
+                            </ul>
+                            <h4 class="font-bold mb-2 roman-gold-text">Спорядження (зображено внизу надгробка):</h4>
+                            <ul class="list-none space-y-1 text-sm bg-gray-50 p-3 rounded">
+                                <li>🛡️ <strong>Лорика гамата:</strong> Кольчужна сорочка.</li>
+                                <li>🪖 <strong>Галея:</strong> Офіцерський шолом із поперечним гребенем.</li>
+                                <li>🦵 <strong>Поножі:</strong> Захист для ніг (ознака високого статусу центуріона).</li>
+                            </ul>
                         </div>
                     </div>
-                </article>
+                </div>
 
-                <!-- Питання 2 -->
-                <article class="bg-white rounded-2xl shadow-lg overflow-hidden border-l-8 border-roman-gold">
-                    <div class="p-6 md:p-8">
-                        <h2 class="text-2xl font-bold text-roman-dark mb-4">2. Пунічні війни (Рим проти Карфагена)</h2>
-                        
-                        <div class="mb-6 rounded-lg overflow-hidden shadow-sm border border-gray-200 bg-gray-50">
-                            <img src="https://geomap.com.ua/images/wh6a/Maps/19.jpg" alt="Карта Пунічних війн" class="w-full h-auto object-contain max-h-[500px]" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'p-4 text-center text-gray-500\'><i class=\'fa-solid fa-map-location-dot text-3xl mb-2\'></i><br>Карта недоступна</div>';">
-                        </div>
+                <!-- Document 2 -->
+                <div class="bg-white rounded-xl shadow-md p-6">
+                    <h2 class="text-2xl font-bold mb-4 roman-red-text">Писемне джерело: З промови Тиберія Гракха</h2>
+                    <blockquote class="border-l-4 border-red-800 pl-4 italic text-gray-700 my-4">
+                        «Навіть дикі звірі мають свої нори й лігвища, і тільки ті, хто гине за Італію, не мають притулку та змушені разом зі своїми дружинами й дітьми вести мандрівне життя. Воєначальники обманюють солдатів... Вони воюють і гинуть заради розкоші й достатків інших. Цих воїнів називають "володарями всього світу", а тим часом у них немає ні клаптика власної землі.»
+                    </blockquote>
+                    <p class="text-sm font-semibold text-gray-800">Обговорення: Які аргументи за здійснення реформ наводив Тиберій Гракх?</p>
+                </div>
 
-                        <p class="mb-4 text-gray-700">Римляни зневажливо називали карфагенян <b>пунами</b>, тому конфлікт між ними отримав назву Пунічні війни.</p>
-                        
-                        <div class="grid md:grid-cols-2 gap-6 mt-6">
-                            <div class="bg-gray-50 p-5 rounded-xl border">
-                                <h3 class="font-bold text-roman-red mb-2 text-lg">Перша Пунічна війна</h3>
-                                <p class="text-sm text-gray-600 mb-2"><b>264–241 рр. до н. е.</b></p>
-                                <p class="text-gray-700 text-sm">Розгорнулася на морі за острів Сицилія. Римляни не були вправними моряками, але винайшли <b>«ворон»</b> (абордажний місток із шипом). Завдяки йому вони перетворили морський бій на сухопутний. Рим переміг, і Сицилія стала першою римською <b>провінцією</b>.</p>
-                            </div>
-                            
-                            <div class="bg-gray-50 p-5 rounded-xl border flex flex-col justify-between">
-                                <div>
-                                    <h3 class="font-bold text-roman-red mb-2 text-lg">Друга Пунічна війна</h3>
-                                    <p class="text-sm text-gray-600 mb-2"><b>218–201 рр. до н. е.</b></p>
-                                    <p class="text-gray-700 text-sm">Пов'язана з карфагенським полководцем <b>Ганнібалом</b>, який здійснив безпрецедентний перехід через Альпи зі слонами. У <b>битві під Каннами (216 р. до н. е.)</b> Ганнібал знищив римську армію. Але Рим не здався. У <b>202 р. до н. е. біля Зами</b> римський полководець Сципіон Африканський розбив Ганнібала.</p>
-                                </div>
-                                
-                                <!-- Портрети полковоців -->
-                                <div class="mt-4 pt-4 border-t border-gray-200 flex justify-around items-center">
-                                    <div class="text-center flex flex-col items-center">
-                                        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b4/Hannibal_Barca_bust_from_Capua_photo.jpg" alt="" class="w-16 h-16 md:w-20 md:h-20 rounded-full object-cover border-2 border-roman-gold shadow-md" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'w-16 h-16 md:w-20 md:h-20 rounded-full bg-gray-200 flex items-center justify-center border-2 border-roman-gold\'><i class=\'fa-solid fa-user text-gray-400\'></i></div>';">
-                                        <p class="text-xs font-bold mt-2 text-gray-800">Ганнібал</p>
-                                    </div>
-                                    <div class="text-gray-300 font-black text-xl italic">VS</div>
-                                    <div class="text-center flex flex-col items-center">
-                                        <img src="https://poradu.pp.ua/uploads/posts/2016-05/publy-kornely-scipon-afrikanskiy-starshiy-korotka-bografya-foto_161.jpeg" alt="" class="w-16 h-16 md:w-20 md:h-20 rounded-full object-cover border-2 border-roman-red shadow-md" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'w-16 h-16 md:w-20 md:h-20 rounded-full bg-gray-200 flex items-center justify-center border-2 border-roman-red\'><i class=\'fa-solid fa-user text-gray-400\'></i></div>';">
-                                        <p class="text-xs font-bold mt-2 text-gray-800">Сципіон</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                <!-- Fishbone -->
+                <div class="bg-white rounded-xl shadow-md p-6 text-center">
+                    <h2 class="text-2xl font-bold mb-4 roman-red-text">Підсумок уроку: Метод «Фішбоун»</h2>
+                    <p class="mb-4 text-gray-700">Як Рим став паном Середземномор’я?</p>
+                    <img src="https://imgpx.com/pNnqNWQ8ogoi.png" alt="Схема Фішбоун" class="mx-auto w-full max-w-2xl rounded-lg shadow border border-gray-200">
+                </div>
 
-                        <div class="mt-6 bg-red-50 p-5 rounded-xl border border-red-100">
-                            <h3 class="font-bold text-roman-red mb-2 text-lg">Третя Пунічна війна (149–146 рр. до н. е.)</h3>
-                            <p class="text-gray-700 text-sm mb-3">Попри поразки, Карфаген швидко відновлювався. Сенатор Катон Старший кожну промову закінчував словами: <b>«Карфаген має бути зруйнований!»</b>. Зрештою римляни взяли місто в облогу, знищили його, а жителів продали в рабство.</p>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Питання 3 -->
-                <article class="bg-white rounded-2xl shadow-lg overflow-hidden border-l-8 border-gray-800">
-                    <div class="p-6 md:p-8">
-                        <h2 class="text-2xl font-bold text-roman-dark mb-4">3. Римське військо та реформи</h2>
-
-                        <div class="flex flex-col md:flex-row gap-8">
-                            <div class="flex-1 space-y-4 text-gray-700">
-                                <p>За часів ранньої республіки армія була <b>ополченням</b>. Воїнами були звичайні землероби, які самі купували собі спорядження. Коли війни стали тривалими, селяни розорювалися, бо не могли обробляти землю.</p>
-                                
-                                <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4">
-                                    <h4 class="font-bold text-yellow-800">Реформа Гая Марія (середина І ст. до н. е.)</h4>
-                                    <ul class="list-disc pl-5 mt-2 text-sm text-yellow-900 space-y-1">
-                                        <li>Армія стала <b>професійною</b> (брали всіх бажаючих, навіть бідняків).</li>
-                                        <li>Держава забезпечувала воїнів зброєю та платила платню.</li>
-                                        <li>Після служби ветерани отримували землю.</li>
-                                    </ul>
-                                </div>
-                                
-                                <p>Основною одиницею армії став <b>легіон</b> (4,5–6 тис. осіб). Для підтримання жорсткої дисципліни існувала <b>децимація</b> — страта кожного десятого солдата за втечу з поля бою чи бунт.</p>
-                            </div>
-                            
-                            <!-- Картка з легіонером та озброєнням -->
-                            <div class="w-full md:w-5/12 bg-gray-50 rounded-xl border border-gray-200 overflow-hidden shadow-sm flex flex-col">
-                                <div class="bg-white p-2 border-b border-gray-200 flex justify-center">
-                                    <img src="https://ratobor.com/projects/rent/wp-content/webp-express/webp-images/uploads/2020/01/legioner_01.jpg.webp" alt="" class="w-full h-auto object-contain max-h-[300px]" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'p-4 text-center text-gray-500\'><i class=\'fa-solid fa-image text-3xl mb-2\'></i><br>Зображення недоступне</div>';">
-                                </div>
-                                <div class="p-5">
-                                    <h4 class="font-bold text-center text-gray-800 mb-3 flex justify-center items-center gap-2">
-                                        <i class="fa-solid fa-shield text-gray-500"></i> Спорядження легіонера
-                                    </h4>
-                                    <ul class="text-sm text-gray-700 space-y-2">
-                                        <li><i class="fa-solid fa-check text-green-600 mr-1"></i> <b>Піхотинець:</b> Важкоозброєний воїн</li>
-                                        <li><i class="fa-solid fa-check text-green-600 mr-1"></i> <b>Лорика:</b> Захисний панцир або кольчуга</li>
-                                        <li><i class="fa-solid fa-check text-green-600 mr-1"></i> <b>Скутум:</b> Великий щит</li>
-                                        <li><i class="fa-solid fa-check text-green-600 mr-1"></i> <b>Гладіус:</b> Короткий меч для ближнього бою</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-                
             </div>
         </section>
 
-        <!-- Вкладка 3: Документи -->
-        <section id="documents" class="tab-content">
-            <div class="grid md:grid-cols-2 gap-8">
+        <!-- TAB: ВІКТОРИНА -->
+        <section id="quiz" class="tab-content hidden animate-fade-in">
+            <div class="bg-white rounded-xl shadow-md p-6 md:p-8">
+                <h2 class="text-2xl font-bold mb-2 roman-red-text text-center">Перевір свої знання! 📝</h2>
+                <p class="text-center text-gray-600 mb-8">Дай відповіді на 12 запитань, щоб закріпити вивчений матеріал.</p>
                 
-                <!-- Документ 1 -->
-                <div class="bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col">
-                    <div class="bg-slate-800 text-white p-4">
-                        <h3 class="text-xl font-bold flex items-center gap-2">
-                            <i class="fa-solid fa-scroll text-yellow-400"></i> Писемне джерело
-                        </h3>
-                    </div>
-                    <div class="p-6 flex-grow">
-                        <h4 class="font-bold text-lg mb-3">Із промови Тиберія Гракха</h4>
-                        <blockquote class="border-l-4 border-roman-gold pl-4 italic text-gray-700 mb-4 bg-gray-50 p-3 rounded-r-lg shadow-sm">
-                            «Навіть дикі звірі мають свої нори й лігвища, і тільки ті, хто гине за Італію, не мають притулку та змушені разом зі своїми дружинами й дітьми вести мандрівне життя. Воєначальники обманюють солдатів, коли говорять їм, що вони віддають своє життя за батьківщину. Вони воюють і гинуть заради розкоші й достатків інших. Цих воїнів називають "володарями всього світу", а тим часом у них немає ні клаптика власної землі.»
-                        </blockquote>
-                        <div class="mt-4 pt-4 border-t border-gray-200">
-                            <p class="font-semibold text-roman-red mb-2">Завдання для роздумів:</p>
-                            <p class="text-sm text-gray-600">Яку проблему воїнів-землеробів підіймає реформатор? Чому їх називали «володарями світу», хоча вони не мали власної землі?</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Документ 2 -->
-                <div class="bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col">
-                    <div class="bg-slate-800 text-white p-4">
-                        <h3 class="text-xl font-bold flex items-center gap-2">
-                            <i class="fa-brands fa-monument text-yellow-400"></i> Речове джерело
-                        </h3>
-                    </div>
-                    <div class="p-6 flex-grow">
-                        <h4 class="font-bold text-lg mb-3">Надгробок центуріона Тита Калідія Севера</h4>
-                        <div class="flex flex-col sm:flex-row gap-4 mb-4">
-                            <div class="w-full sm:w-1/3 rounded-lg overflow-hidden shadow-sm border border-gray-200 flex items-center justify-center bg-gray-100">
-                                <img src="https://imgpx.com/7bsj8jjgWwRt.png" alt="Надгробок центуріона Тита Калідія Севера" class="w-full h-auto object-cover max-h-64" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'p-4 text-center text-gray-500\'><i class=\'fa-solid fa-image text-3xl mb-2\'></i><br>Зображення недоступне</div>';">
-                            </div>
-                            <div class="w-full sm:w-2/3 text-sm text-gray-700 space-y-2">
-                                <p>Знайдений у Карнунті (Австрія). Це «кам'яне резюме» описує блискучу кар'єру:</p>
-                                <ul class="list-disc pl-5 space-y-1">
-                                    <li><b>Початок служби:</b> Вершник у допоміжних військах (Альпійська когорта).</li>
-                                    <li><b>Підвищення:</b> Дослужився до декуріона (командира 30 вершників).</li>
-                                    <li><b>Еліта:</b> Переведений до регулярного XV Аполлонового легіону на посаду <b>центуріона</b>.</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="bg-blue-50 p-3 rounded-lg text-sm border border-blue-100">
-                            <p><b>Спорядження на стелі:</b> Лорика гамата (кольчуга), офіцерський шолом, поножі та кінь, якого веде зброєносець.</p>
-                            <p class="mt-2 text-xs text-gray-500">Прожив 58 років, віддав армії 34 роки життя.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Фішбоун -->
-            <div class="mt-8 bg-white rounded-2xl shadow-xl p-6 md:p-8 border-t-4 border-blue-500">
-                <h3 class="text-2xl font-bold mb-6 text-center text-roman-dark">Схема: Метод «Фішбоун» (Пунічні війни)</h3>
-                
-                <div class="rounded-lg overflow-hidden shadow-sm border border-gray-200 bg-gray-50 flex justify-center p-2 md:p-4">
-                    <img src="https://imgpx.com/pNnqNWQ8ogoi.png" alt="" class="w-full h-auto object-contain max-h-[600px]" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'p-4 text-center text-gray-500\'><i class=\'fa-solid fa-image text-3xl mb-2\'></i><br>Зображення недоступне</div>';">
-                </div>
-            </div>
-        </section>
-
-        <!-- Вкладка 4: Вікторина -->
-        <section id="quiz" class="tab-content">
-            <div class="bg-white rounded-2xl shadow-xl p-6 md:p-10 max-w-4xl mx-auto">
-                <div class="text-center mb-8">
-                    <h2 class="text-3xl font-bold text-roman-dark">Перевір свої знання!</h2>
-                    <p class="text-gray-600 mt-2">Дай відповіді на 12 запитань за матеріалами уроку.</p>
-                </div>
-
-                <form id="quizForm" class="space-y-6">
-                    <div id="questionsContainer" class="space-y-8">
-                        <!-- Питання будуть згенеровані через JavaScript -->
-                    </div>
-
-                    <div class="pt-6 border-t flex flex-col sm:flex-row items-center justify-between gap-4">
-                        <button type="button" onclick="submitQuiz()" class="w-full sm:w-auto bg-roman-red hover:bg-red-800 text-white font-bold py-3 px-8 rounded-lg shadow-lg transition-transform transform hover:scale-105">
-                            Завершити тест
-                        </button>
-                        <div id="quizResult" class="hidden text-2xl font-bold"></div>
-                    </div>
+                <form id="quiz-form" class="space-y-6">
+                    <!-- Questions will be generated by JS -->
                 </form>
+
+                <div class="mt-8 text-center">
+                    <button type="button" onclick="calculateScore()" class="roman-red hover:bg-red-900 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-transform transform hover:scale-105">
+                        Дізнатися результат
+                    </button>
+                </div>
+
+                <div id="quiz-result" class="hidden mt-6 p-6 rounded-lg text-center text-xl font-bold">
+                    <!-- Result will be displayed here -->
+                </div>
             </div>
         </section>
 
     </main>
 
     <!-- Footer -->
-    <footer class="bg-slate-900 text-gray-400 py-6 mt-12 text-center text-sm">
-        <p>© Урок історії 6 клас. Тема: «Римські завоювання».</p>
-        <p class="mt-1">Розроблено за матеріалами підручника (§ 51).</p>
+    <footer class="bg-gray-800 text-gray-400 py-6 text-center mt-auto">
+        <p>© 2026 Матеріали для уроку історії, 6 клас НУШ.</p>
     </footer>
 
-    <!-- JavaScript -->
     <script>
-        // --- Навігація вкладок ---
+        // Tab Navigation Logic
         function openTab(tabName) {
+            // Hide all tabs
             const tabs = document.querySelectorAll('.tab-content');
-            tabs.forEach(tab => tab.classList.remove('active'));
-            
-            const buttons = document.querySelectorAll('.tab-btn');
-            buttons.forEach(btn => {
-                btn.classList.remove('active-tab', 'border-roman-gold', 'text-white');
-                btn.classList.add('border-transparent', 'text-gray-300');
-                if(btn.dataset.target === tabName) {
-                    btn.classList.add('active-tab', 'border-roman-gold', 'text-white');
-                    btn.classList.remove('border-transparent', 'text-gray-300');
-                }
-            });
+            tabs.forEach(tab => tab.classList.add('hidden'));
 
-            document.getElementById(tabName).classList.add('active');
+            // Remove active class from all buttons
+            const btns = document.querySelectorAll('.tab-btn');
+            btns.forEach(btn => btn.classList.remove('active'));
+
+            // Show selected tab and set button to active
+            document.getElementById(tabName).classList.remove('hidden');
+            document.getElementById('btn-' + tabName).classList.add('active');
+            
+            // Scroll to top
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Встановлюємо активний стиль для Головної при завантаженні
-        document.querySelector('.tab-btn[data-target="main"]').classList.add('border-roman-gold', 'text-white');
-        document.querySelector('.tab-btn[data-target="main"]').classList.remove('border-transparent', 'text-gray-300');
-
-
-        // --- Вікторина ---
+        // Quiz Data
         const quizData = [
-            {
-                q: "Що означає вислів «Піррова перемога»?",
-                options: ["Перемога на морі", "Перемога, яка дісталася надто дорогою ціною", "Легка перемога", "Поразка через зраду"],
-                correct: 1
-            },
-            {
-                q: "Між ким велися Пунічні війни?",
-                options: ["Рим і Греція", "Рим і Єгипет", "Рим і Карфаген", "Рим і Македонія"],
-                correct: 2
-            },
-            {
-                q: "Першою римською провінцією став острів:",
-                options: ["Крит", "Кіпр", "Сардинія", "Сицилія"],
-                correct: 3
-            },
-            {
-                q: "Який винахід допоміг римлянам перемогти на морі під час Першої Пунічної війни?",
-                options: ["Грецький вогонь", "Корабельний таран", "Абордажний місток («ворон»)", "Катапульта"],
-                correct: 2
-            },
-            {
-                q: "Який видатний полководець здійснив перехід зі слонами через Альпи?",
-                options: ["Сципіон Африканський", "Ганнібал", "Юлій Цезар", "Пірр"],
-                correct: 1
-            },
-            {
-                q: "У якій битві (216 р. до н. е.) Ганнібал завдав нищівної поразки римлянам?",
-                options: ["Під Каннами", "Біля Зами", "Під Аускулом", "Біля Карфагена"],
-                correct: 0
-            },
-            {
-                q: "Хто з римських полководців переміг Ганнібала у битві біля Зами (202 р. до н. е.)?",
-                options: ["Гай Марій", "Катон Старший", "Тиберій Гракх", "Сципіон Африканський"],
-                correct: 3
-            },
-            {
-                q: "Кому належить вислів: «Карфаген має бути зруйнований!»?",
-                options: ["Юлію Цезарю", "Катону Старшому", "Гай Марію", "Тиберію Гракху"],
-                correct: 1
-            },
-            {
-                q: "Що таке провінція в розумінні давніх римлян?",
-                options: ["Частина міста Рим", "Залежна від Риму територія за межами Апеннінського півострова", "Військовий табір", "Союзна держава"],
-                correct: 1
-            },
-            {
-                q: "Що таке децимація в римській армії?",
-                options: ["Премія після перемоги", "Покарання кожного десятого солдата за провину", "Відпустка для легіонера", "Вид бойового шикування"],
-                correct: 1
-            },
-            {
-                q: "Хто з полководців перетворив римське ополчення на професійну армію?",
-                options: ["Гай Марій", "Пірр", "Сципіон", "Ганнібал"],
-                correct: 0
-            },
-            {
-                q: "Яку проблему римського війська підіймав Тиберій Гракх у своїй промові?",
-                options: ["Нестачу зброї", "Відсутність у воїнів-землеробів власної землі", "Малу платню", "Погане харчування"],
-                correct: 1
-            }
+            { q: "1. Що означає вислів «Піррова перемога»?", options: ["Блискуча і швидка перемога", "Перемога, що дісталася надто високою ціною", "Поразка через зраду"], correct: 1 },
+            { q: "2. З якою державою Рим вів Пунічні війни?", options: ["З Грецією", "З Єгиптом", "З Карфагеном"], correct: 2 },
+            { q: "3. Хто очолював армію Карфагена під час Другої пунічної війни?", options: ["Сципіон Африканський", "Ганнібал Барка", "Пірр"], correct: 1 },
+            { q: "4. Який римський полководець переміг Ганнібала?", options: ["Гай Юлій Цезар", "Тиберій Гракх", "Сципіон Африканський"], correct: 2 },
+            { q: "5. Як називався основний військовий підрозділ римської армії?", options: ["Легіон", "Фаланга", "Когорта"], correct: 0 },
+            { q: "6. Скільки осіб налічував римський легіон у різні часи?", options: ["1-2 тисячі", "Від 4,5 до 6 тисяч", "Понад 10 тисяч"], correct: 1 },
+            { q: "7. Хто змінив структуру легіону, додавши машини для штурму?", options: ["Гай Юлій Цезар", "Гай Марій", "Ганнібал"], correct: 0 },
+            { q: "8. Що таке «лорика гамата» на спорядженні римського воїна?", options: ["Офіцерський шолом", "Захист для ніг", "Кольчужна сорочка"], correct: 2 },
+            { q: "9. Яка деталь обладунків на надгробку Тита Севера була ознакою центуріона?", options: ["Поножі", "Щит", "Спис"], correct: 0 },
+            { q: "10. Ким спочатку був Тит Калідій Север на початку своєї кар'єри?", options: ["Декуріоном", "Звичайним вершником", "Центуріоном"], correct: 1 },
+            { q: "11. Хто з римських діячів говорив, що воїни — це «володарі світу без клаптика власної землі»?", options: ["Сципіон", "Гай Марій", "Тиберій Гракх"], correct: 2 },
+            { q: "12. Чим відзначилися реформи Гая Марія?", options: ["Армія стала професійною, за службу платили гроші", "Римляни суміщали службу із заняттям господарством", "Створили військовий флот"], correct: 0 }
         ];
 
-        const container = document.getElementById('questionsContainer');
-
-        // Рендеримо питання
+        // Render Quiz
+        const quizForm = document.getElementById('quiz-form');
         quizData.forEach((item, index) => {
             const questionDiv = document.createElement('div');
-            questionDiv.className = "bg-gray-50 p-5 rounded-xl border border-gray-200 shadow-sm";
+            questionDiv.className = 'p-4 bg-gray-50 rounded-lg border border-gray-200';
             
-            let optionsHtml = '';
+            const questionTitle = document.createElement('h3');
+            questionTitle.className = 'font-bold text-lg mb-3';
+            questionTitle.innerText = item.q;
+            questionDiv.appendChild(questionTitle);
+
+            const optionsDiv = document.createElement('div');
+            optionsDiv.className = 'space-y-2';
+
             item.options.forEach((opt, optIndex) => {
-                optionsHtml += `
-                    <label class="flex items-center space-x-3 p-3 rounded-lg border border-transparent hover:bg-white hover:shadow-sm cursor-pointer transition-all">
-                        <input type="radio" name="q${index}" value="${optIndex}" class="form-radio h-5 w-5 text-roman-red focus:ring-roman-red">
-                        <span class="text-gray-700">${opt}</span>
-                    </label>
+                const label = document.createElement('label');
+                label.className = 'flex items-center space-x-3 p-2 rounded hover:bg-gray-200 cursor-pointer transition-colors';
+                label.innerHTML = `
+                    <input type="radio" name="q${index}" value="${optIndex}" class="form-radio h-5 w-5 text-red-800">
+                    <span class="text-gray-700">${opt}</span>
                 `;
+                optionsDiv.appendChild(label);
             });
 
-            questionDiv.innerHTML = `
-                <h3 class="font-bold text-lg mb-3 flex gap-2">
-                    <span class="bg-roman-red text-white w-7 h-7 rounded-full flex items-center justify-center shrink-0 text-sm">${index + 1}</span>
-                    <span class="text-gray-800 mt-0.5">${item.q}</span>
-                </h3>
-                <div class="space-y-1 pl-9" id="options_q${index}">
-                    ${optionsHtml}
-                </div>
-            `;
-            container.appendChild(questionDiv);
+            questionDiv.appendChild(optionsDiv);
+            quizForm.appendChild(questionDiv);
         });
 
-        // Перевірка вікторини
-        function submitQuiz() {
+        // Calculate Score
+        function calculateScore() {
             let score = 0;
-            let answeredCount = 0;
+            let answeredAll = true;
 
             quizData.forEach((item, index) => {
                 const selected = document.querySelector(`input[name="q${index}"]:checked`);
-                const optionsContainer = document.getElementById(`options_q${index}`);
+                const questionBlock = document.querySelectorAll('#quiz-form > div')[index];
                 
-                // Скидаємо попередні стилі помилок/успіхів
-                const labels = optionsContainer.querySelectorAll('label');
-                labels.forEach(lbl => {
-                    lbl.classList.remove('bg-green-100', 'border-green-400', 'bg-red-100', 'border-red-400');
-                });
-
                 if (selected) {
-                    answeredCount++;
-                    const selectedVal = parseInt(selected.value);
-                    
-                    if (selectedVal === item.correct) {
+                    if (parseInt(selected.value) === item.correct) {
                         score++;
-                        selected.closest('label').classList.add('bg-green-100', 'border-green-400');
+                        questionBlock.classList.remove('bg-red-50', 'border-red-300');
+                        questionBlock.classList.add('bg-green-50', 'border-green-300');
                     } else {
-                        selected.closest('label').classList.add('bg-red-100', 'border-red-400');
-                        // Підсвічуємо правильну
-                        labels[item.correct].classList.add('bg-green-100', 'border-green-400');
+                        questionBlock.classList.remove('bg-green-50', 'border-green-300');
+                        questionBlock.classList.add('bg-red-50', 'border-red-300');
                     }
                 } else {
-                    // Якщо не відповів, підсвічуємо правильну блідим кольором
-                    labels[item.correct].classList.add('bg-green-50', 'border-green-200');
+                    answeredAll = false;
+                    questionBlock.classList.add('bg-yellow-50', 'border-yellow-300');
                 }
             });
 
-            const resultDiv = document.getElementById('quizResult');
-            resultDiv.classList.remove('hidden', 'text-green-600', 'text-yellow-600', 'text-red-600');
-            
-            if (answeredCount < quizData.length) {
-                alert("Будь ласка, дайте відповідь на всі запитання.");
+            const resultDiv = document.getElementById('quiz-result');
+            resultDiv.classList.remove('hidden');
+
+            if (!answeredAll) {
+                resultDiv.className = 'mt-6 p-6 rounded-lg text-center text-lg font-bold bg-yellow-100 text-yellow-800 border border-yellow-300';
+                resultDiv.innerText = '⚠️ Будь ласка, дайте відповіді на всі запитання!';
                 return;
             }
 
-            let colorClass = 'text-green-600';
-            if (score < 6) colorClass = 'text-red-600';
-            else if (score < 10) colorClass = 'text-yellow-600';
+            let message = '';
+            let styleClass = '';
 
-            resultDiv.innerHTML = `Ваш результат: <span class="${colorClass}">${score} / ${quizData.length}</span>`;
-            resultDiv.classList.add('block');
-            
-            // Плавний скрол до результату
-            resultDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            if (score >= 10) {
+                message = '🏆 Блискуче! Справжній полководець!';
+                styleClass = 'bg-green-100 text-green-800 border-green-300';
+            } else if (score >= 6) {
+                message = '👍 Добре! Ти справжній легіонер, але ще є куди рости.';
+                styleClass = 'bg-blue-100 text-blue-800 border-blue-300';
+            } else {
+                message = '📚 Варто ще раз перечитати матеріал уроку. Ти зможеш краще!';
+                styleClass = 'bg-red-100 text-red-800 border-red-300';
+            }
+
+            resultDiv.className = `mt-6 p-6 rounded-lg text-center text-xl font-bold border ${styleClass}`;
+            resultDiv.innerHTML = `Твій результат: ${score} з 12<br><span class="text-base font-normal mt-2 block">${message}</span>`;
         }
     </script>
 </body>
